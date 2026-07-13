@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOTTE GIANTS - 부산의 심장, 거인의 열정</title>
+    <!-- Tailwind CSS CDN for utility styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Noto Sans KR & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        giantsNavy: '#041E42', // 오피셜 네이비
+                        giantsRed: '#E4002B',  // 오피셜 레드
+                        giantsGold: '#C5A059', // 오피셜 골드
+                        giantsGray: '#F1F5F9',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #041E42;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #041E42;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E4002B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
+        /* Highlight Effect */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        /* Gradient Overlays */
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(4,30,66,0.4) 0%, rgba(4,30,66,0.95) 100%);
+        }
+        /* Card Hover Animations */
+        .hover-trigger:hover .hover-target {
+            transform: scale(1.05);
+            transition: transform 0.5s ease;
+        }
+        /* Custom Pulse for live element */
+        .pulse-red {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(228, 0, 43, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(228, 0, 43, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(228, 0, 43, 0); }
+        }
+    </style>
+</head>
+<body class="bg-giantsNavy text-white antialiased">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-giantsNavy/90 backdrop-blur-md border-b border-white/10" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3">
+                <span class="text-2xl sm:text-3xl font-black tracking-tighter text-white font-montserrat flex items-center">
+                    LOTTE <span class="text-giantsRed ml-2">GIANTS</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wider uppercase">
+                <a href="#home" class="hover:text-giantsRed transition-colors duration-200 text-giantsRed">홈</a>
+                <a href="#about" class="hover:text-giantsRed transition-colors duration-200">구단 소개</a>
+                <a href="#history" class="hover:text-giantsRed transition-colors duration-200">역사관</a>
+                <a href="#players" class="hover:text-giantsRed transition-colors duration-200">스타 선수</a>
+                <a href="#cheer" class="hover:text-giantsRed transition-colors duration-200">응원광장</a>
+            </nav>
+
+            <!-- CTA / Ticket Button -->
+            <div class="hidden lg:flex items-center">
+                <a href="https://www.giantsclub.com" target="_blank" class="bg-giantsRed hover:bg-white hover:text-giantsNavy transition-all duration-300 text-white font-bold py-2.5 px-6 rounded-full text-xs tracking-wider flex items-center gap-2 shadow-lg shadow-giantsRed/20">
+                    <i class="fa-solid fa-ticket"></i> 공식 예매처 바로가기
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="md:hidden text-white hover:text-giantsRed focus:outline-none" id="menu-btn" aria-label="메뉴 열기">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="hidden md:hidden bg-giantsNavy border-t border-white/10 px-4 pt-4 pb-6 space-y-3" id="mobile-menu">
+            <a href="#home" class="block py-2 px-3 hover:bg-white/5 rounded text-base font-medium transition-colors">홈</a>
+            <a href="#about" class="block py-2 px-3 hover:bg-white/5 rounded text-base font-medium transition-colors">구단 소개</a>
+            <a href="#history" class="block py-2 px-3 hover:bg-white/5 rounded text-base font-medium transition-colors">역사관</a>
+            <a href="#players" class="block py-2 px-3 hover:bg-white/5 rounded text-base font-medium transition-colors">스타 선수</a>
+            <a href="#cheer" class="block py-2 px-3 hover:bg-white/5 rounded text-base font-medium transition-colors">응원광장</a>
+            <a href="https://www.giantsclub.com" target="_blank" class="block w-full text-center bg-giantsRed hover:bg-white hover:text-giantsNavy text-white py-3 rounded-lg font-bold transition-all text-sm">
+                공식 홈페이지 예매
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Hero Background Images / Decorative Elements -->
+        <div class="absolute inset-0 bg-cover bg-center z-0 opacity-40 mix-blend-overlay scale-105 transition-transform duration-[10000ms]" style="background-image: url('https://images.unsplash.com/photo-1544045560-723f63933a3e?auto=format&fit=crop&q=80&w=1920');" id="hero-bg"></div>
+        <div class="absolute inset-0 hero-gradient z-10"></div>
+        
+        <!-- Animated Particles Backgound (Canvas) -->
+        <canvas id="particle-canvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-giantsGold border border-white/15 text-xs sm:text-sm font-bold tracking-widest uppercase mb-6 animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-giantsRed pulse-red"></span> BUSAN PRIDE, KOREA'S LEGEND
+            </span>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-4 font-montserrat uppercase">
+                BUSAN <span class="text-giantsRed">GIANTS</span>
+            </h1>
+            <p class="text-stroke text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-6 font-montserrat uppercase">
+                HEART OF PASSION
+            </p>
+            
+            <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-300 font-light leading-relaxed mb-10">
+                1982년 창단 이래 부산 시민과 함께 울고 웃어온 거인들의 고향.<br class="hidden sm:inline"> 
+                사직구장을 주황빛 열광으로 물들이는 가장 뜨겁고 격렬한 응원을 경험해 보세요.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-giantsRed hover:bg-white hover:text-giantsNavy text-white font-bold rounded-lg transition-all duration-300 shadow-lg shadow-giantsRed/30 tracking-wider">
+                    구단 브랜드 스토리 <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#cheer" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-lg transition-all duration-300 backdrop-blur-sm tracking-wider">
+                    <i class="fa-solid fa-volume-high mr-2"></i> 대표 응원가 듣기
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-80">
+            <span class="text-xs uppercase tracking-widest font-montserrat text-slate-400">Scroll Down</span>
+            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-3 bg-giantsRed rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 sm:py-32 bg-slate-950 relative overflow-hidden">
+        <!-- Decorative subtle grid -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-xs sm:text-sm font-bold text-giantsGold uppercase tracking-widest mb-3">BRAND STORY</h2>
+                <p class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-6">부산을 대표하는 절대적 존재감</p>
+                <div class="w-16 h-1 bg-giantsRed mx-auto"></div>
+            </div>
+
+            <!-- Identity Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <!-- Card 1 -->
+                <div class="bg-giantsNavy/50 border border-white/10 p-8 sm:p-10 rounded-2xl hover:border-giantsGold/50 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-xl bg-giantsGold/10 flex items-center justify-center text-giantsGold text-2xl mb-8 group-hover:bg-giantsGold group-hover:text-giantsNavy transition-all duration-300">
+                        <i class="fa-solid fa-ribbon"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">엠블럼 & 전통</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        클래식 네이비와 강렬한 레드의 조화는 바다의 깊고 웅장함과 꺼지지 않는 정열을 상징합니다. 롯데 자이언츠의 상징인 V3(세 번째 우승)를 향한 굳은 신념이 엠블럼에 고스란히 담겨 있습니다.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-giantsNavy/50 border border-white/10 p-8 sm:p-10 rounded-2xl hover:border-giantsRed/50 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-xl bg-giantsRed/10 flex items-center justify-center text-giantsRed text-2xl mb-8 group-hover:bg-giantsRed group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-ghost"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">마스코트 누리 & 피니</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        갈매기를 의인화하여 부산 야구의 전령사 역할을 하는 누리와 피니. 팬들에게 유쾌한 즐거움을 선사하며 그라운드 안팎에서 뜨거운 기운을 이끌어내는 활력의 대명사들입니다.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-giantsNavy/50 border border-white/10 p-8 sm:p-10 rounded-2xl hover:border-white/50 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-xl bg-white/5 flex items-center justify-center text-white text-2xl mb-8 group-hover:bg-white group-hover:text-giantsNavy transition-all duration-300">
+                        <i class="fa-solid fa-street-view"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">사직 야구장</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        세계 최대의 노래방이자 세상에서 가장 뜨거운 야구 성지. 가을 야구를 갈망하는 2만 5천 관중이 목청껏 외치는 대합창은 사직구장에서만 볼 수 있는 경이로운 스포츠 문화유산입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visual Showcase Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                        "부산은 야구이고,<br> 야구는 곧 롯데 자이언츠다"
+                    </h3>
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                        부산 시민들에게 롯데 자이언츠는 단순한 스포츠 구단 이상을 의미합니다. 일주일의 활력소이자 가슴 속 깊은 열망을 분출하는 출구이며, 세대를 초월하여 대화하게 만드는 최고의 매개체입니다.
+                    </p>
+                    
+                    <div class="pt-4 grid grid-cols-2 gap-6">
+                        <div class="border-l-4 border-giantsRed pl-4">
+                            <h4 class="text-3xl font-black font-montserrat text-giantsRed">1982</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-1">KBO 원년 구단 창단</p>
+                        </div>
+                        <div class="border-l-4 border-giantsGold pl-4">
+                            <h4 class="text-3xl font-black font-montserrat text-giantsGold">V2</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-1">한국시리즈 2회 우승</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Mockup Image Placeholder with SVG design elements -->
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                    <div class="aspect-video bg-slate-900 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                        <!-- Simulated Stadium graphic via CSS and SVGs -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-giantsNavy via-slate-900 to-transparent opacity-80 z-0"></div>
+                        <div class="relative z-10 space-y-4">
+                            <i class="fa-solid fa-users-rays text-6xl text-giantsGold/80 animate-pulse"></i>
+                            <h4 class="text-xl font-bold">거인들의 뜨거운 숨결</h4>
+                            <p class="text-xs sm:text-sm text-slate-400 max-w-sm mx-auto">
+                                [사직야구장 관중석 이미지] 웅장한 사직 구장의 오렌지색 파도타기 응원의 전경
+                            </p>
+                            <span class="inline-block text-xs bg-giantsRed px-3 py-1 rounded-full text-white font-semibold">부산의 심장</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORY / TIMELINE SECTION -->
+    <section id="history" class="py-24 sm:py-32 bg-giantsNavy/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-xs sm:text-sm font-bold text-giantsGold uppercase tracking-widest mb-3">GIANTS TIMELINE</h2>
+                <p class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-6">찬란한 역사의 순간들</p>
+                <div class="w-16 h-1 bg-giantsRed mx-auto"></div>
+            </div>
+
+            <!-- Timeline Structure -->
+            <div class="relative border-l-2 border-white/20 ml-4 md:ml-1/2 md:translate-x-1/2 space-y-12 max-w-3xl mx-auto">
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Marker -->
+                    <div class="absolute -left-3 top-1.5 w-6 h-6 rounded-full bg-giantsNavy border-4 border-giantsRed group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                    <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl hover:border-giantsRed/30 transition-all">
+                        <span class="text-xs font-bold text-giantsRed uppercase tracking-widest font-montserrat">1982</span>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1 text-white">롯데 자이언츠 구단 공식 창단</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            한국프로야구(KBO) 원년 멤버로서 부산을 연고지로 출범. 전통 깊은 명가로 발돋움하기 위한 자이언츠 전설의 첫 페이지가 쓰였습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Marker -->
+                    <div class="absolute -left-3 top-1.5 w-6 h-6 rounded-full bg-giantsNavy border-4 border-giantsGold group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                    <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl hover:border-giantsGold/30 transition-all">
+                        <span class="text-xs font-bold text-giantsGold uppercase tracking-widest font-montserrat">1984</span>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1 text-white">첫 한국시리즈 우승 (V1)</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            '무쇠팔' 최동원 투수가 한국시리즈 단독 4승이라는 전무후무한 대기록을 수립하며 극적인 창단 첫 우승을 장식했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Marker -->
+                    <div class="absolute -left-3 top-1.5 w-6 h-6 rounded-full bg-giantsNavy border-4 border-giantsGold group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                    <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl hover:border-giantsGold/30 transition-all">
+                        <span class="text-xs font-bold text-giantsGold uppercase tracking-widest font-montserrat">1992</span>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1 text-white">두 번째 한국시리즈 우승 (V2)</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            '염종석 신드롬'과 자갈치 김민호 등 자이언츠 원클럽 영웅들의 환상적인 조화로 다시 한번 KBO 정상을 정복하며 두 번째 우승 트로피를 차지했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Marker -->
+                    <div class="absolute -left-3 top-1.5 w-6 h-6 rounded-full bg-giantsNavy border-4 border-white/40 group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                    <div class="bg-slate-900/60 border border-white/10 p-6 rounded-2xl hover:border-white/30 transition-all">
+                        <span class="text-xs font-bold text-white/60 uppercase tracking-widest font-montserrat">Present</span>
+                        <h3 class="text-lg sm:text-xl font-bold mt-1 text-white">V3를 향한 끊임없는 도전</h3>
+                        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                            이대호의 눈물과 함께 새겨진 야구 열정. 언제나 우승 후보 이상의 관심과 최고의 열정을 보여주는 팬들의 심장 소리와 함께 자이언츠의 질주는 오늘도 계속됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAR PLAYERS SECTION -->
+    <section id="players" class="py-24 sm:py-32 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+                <div>
+                    <h2 class="text-xs sm:text-sm font-bold text-giantsGold uppercase tracking-widest mb-3 font-montserrat">GIANTS HEROES</h2>
+                    <p class="text-3xl sm:text-5xl font-black tracking-tight text-white">자이언츠를 빛낸 주역들</p>
+                </div>
+                <!-- Filter buttons -->
+                <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
+                    <button class="px-5 py-2 rounded-full bg-giantsRed font-semibold text-white tracking-wider filter-btn active" onclick="filterPlayers('all', this)">전체</button>
+                    <button class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 font-semibold text-slate-300 tracking-wider filter-btn" onclick="filterPlayers('legend', this)">레전드</button>
+                    <button class="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 font-semibold text-slate-300 tracking-wider filter-btn" onclick="filterPlayers('current', this)">현역 주역</button>
+                </div>
+            </div>
+
+            <!-- Player Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="players-grid">
+                <!-- Player 1 (Legend) -->
+                <div class="player-card group" data-type="legend">
+                    <div class="bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-giantsRed/50 transition-all duration-300 shadow-xl flex flex-col h-full">
+                        <!-- Simulated Player Image Area -->
+                        <div class="aspect-[4/3] bg-gradient-to-b from-slate-800 to-giantsNavy flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                            <i class="fa-solid fa-baseball text-5xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-4 right-4 bg-giantsGold text-giantsNavy text-[10px] font-extrabold tracking-widest px-2.5 py-1 rounded-full">영구결번 NO.11</span>
+                            <!-- Placeholder Label -->
+                            <span class="text-xs text-slate-400 mt-4">[무쇠팔 최동원 선수 경기 아카이브 이미지]</span>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold tracking-tight text-white mb-1">최동원</h3>
+                                <p class="text-xs text-giantsGold font-semibold uppercase tracking-wider mb-4">Legend Pitcher</p>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    롯데 자이언츠 역사상 가장 빛나는 별. 1984년 한국시리즈 홀로 4승을 올리며 첫 우승을 이끈 자이언츠 정신 그 자체이자 영원한 영웅.
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-500">
+                                <span>주요 기록: 통산 103승, 223 탈삼진(시즌)</span>
+                                <i class="fa-solid fa-star text-giantsGold"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 2 (Legend) -->
+                <div class="player-card group" data-type="legend">
+                    <div class="bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-giantsRed/50 transition-all duration-300 shadow-xl flex flex-col h-full">
+                        <div class="aspect-[4/3] bg-gradient-to-b from-slate-800 to-giantsNavy flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                            <i class="fa-solid fa-baseball-bat-ball text-5xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-4 right-4 bg-giantsGold text-giantsNavy text-[10px] font-extrabold tracking-widest px-2.5 py-1 rounded-full">영구결번 NO.10</span>
+                            <span class="text-xs text-slate-400 mt-4">[조선해협 4번 타자 이대호 선수 아카이브 이미지]</span>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold tracking-tight text-white mb-1">이대호</h3>
+                                <p class="text-xs text-giantsGold font-semibold uppercase tracking-wider mb-4">Legend Batter</p>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    '조선의 4번 타자'. 타격 7관왕, 9경기 연속 홈런 등 압도적인 업적을 남긴 영원한 롯데의 영웅. 2022년 고향 사직에서 은퇴식을 가졌습니다.
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-500">
+                                <span>주요 기록: KBO 최초 타격 7관왕, 2회 트리플크라운</span>
+                                <i class="fa-solid fa-star text-giantsGold"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player 3 (Current) -->
+                <div class="player-card group" data-type="current">
+                    <div class="bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-giantsRed/50 transition-all duration-300 shadow-xl flex flex-col h-full">
+                        <div class="aspect-[4/3] bg-gradient-to-b from-slate-800 to-giantsNavy flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                            <i class="fa-solid fa-baseball text-5xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                            <span class="absolute top-4 right-4 bg-giantsRed text-white text-[10px] font-extrabold tracking-widest px-2.5 py-1 rounded-full">ACTIVE STAR</span>
+                            <span class="text-xs text-slate-400 mt-4">[자이언츠 현재 주역 주요 선수 경기 이미지]</span>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold tracking-tight text-white mb-1">차세대 에이스</h3>
+                                <p class="text-xs text-giantsRed font-semibold uppercase tracking-wider mb-4">Core Player</p>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    사직을 지키는 굳건한 마운드의 주역들과 강력한 방망이로 미래 영광을 이끌어나갈 황금 세대 현역 선수들의 눈부신 비상을 기대하세요.
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex justify-between items-center text-xs text-slate-500">
+                                <span>지속적인 전력 보강과 육성 시스템 가동 중</span>
+                                <i class="fa-solid fa-baseball text-giantsRed"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHEER & FAN SPACE SECTION -->
+    <section id="cheer" class="py-24 sm:py-32 bg-giantsNavy relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                
+                <!-- Left: Interactive Cheer Player Mockup -->
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-xs sm:text-sm font-bold text-giantsGold uppercase tracking-widest mb-3 font-montserrat">GIANTS CHEER SOUND</h2>
+                        <p class="text-3xl sm:text-4xl font-black tracking-tight text-white mb-4">심장을 울리는 거인의 응원가</p>
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                            사직구장 전 좌석을 뜨거운 열기로 채우는 자이언츠 대표곡을 플레이어로 재생하여 직접 느껴보세요! (음원은 효과음 및 멜로디 시뮬레이터로 구성되어 있습니다)
+                        </p>
+                    </div>
+
+                    <!-- Audio Player Box -->
+                    <div class="bg-slate-900 border border-white/10 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-xl">
+                        <div class="flex items-center justify-between mb-8">
+                            <span class="text-xs font-bold text-giantsGold tracking-widest uppercase"><i class="fa-solid fa-compact-disc animate-spin text-giantsRed mr-1"></i> GIANTS LIVE PLAYER</span>
+                            <span class="text-[10px] bg-giantsRed px-2.5 py-1 rounded-full text-white font-extrabold uppercase tracking-wide">STADIUM MIX</span>
+                        </div>
+
+                        <!-- Current Track Display -->
+                        <div class="text-center mb-8">
+                            <h4 class="text-xl sm:text-2xl font-black mb-1" id="track-title">영원한 자이언츠 응원가</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm" id="track-artist">가장 격정적인 2만 5천 관객 합창곡</p>
+                        </div>
+
+                        <!-- Visualizer simulator bar animation -->
+                        <div class="flex items-end justify-center gap-1.5 h-16 mb-8" id="visualizer-container">
+                            <div class="w-1.5 bg-giantsRed rounded-t-sm h-3 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsRed rounded-t-sm h-6 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsRed rounded-t-sm h-12 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsGold rounded-t-sm h-8 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-white rounded-t-sm h-4 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsRed rounded-t-sm h-14 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsGold rounded-t-sm h-10 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-slate-700 rounded-t-sm h-5 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsRed rounded-t-sm h-16 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsRed rounded-t-sm h-6 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-white rounded-t-sm h-12 transition-all duration-150"></div>
+                            <div class="w-1.5 bg-giantsGold rounded-t-sm h-3 transition-all duration-150"></div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-slate-800 h-1.5 rounded-full mb-8 relative cursor-pointer" id="progress-bar-bg">
+                            <div class="bg-giantsRed h-full rounded-full w-0" id="progress-bar"></div>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="flex items-center justify-center gap-8 text-xl">
+                            <button class="text-slate-400 hover:text-white transition-colors" onclick="changeTrack('prev')" aria-label="이전 곡"><i class="fa-solid fa-backward-step"></i></button>
+                            <button class="w-14 h-14 rounded-full bg-giantsRed text-white hover:scale-105 transition-all flex items-center justify-center text-2xl shadow-lg shadow-giantsRed/20" onclick="togglePlay()" id="play-btn" aria-label="재생/일시정지">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </button>
+                            <button class="text-slate-400 hover:text-white transition-colors" onclick="changeTrack('next')" aria-label="다음 곡"><i class="fa-solid fa-forward-step"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Live Fan Wall (Guestbook) using Local Memory -->
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-xs sm:text-sm font-bold text-giantsGold uppercase tracking-widest mb-3 font-montserrat">GIANTS FAN SQUARE</h2>
+                        <p class="text-3xl sm:text-4xl font-black tracking-tight text-white mb-4">팬들의 열정적인 외침</p>
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                            우승(V3)을 향한 팬들의 실시간 열광의 메시지를 남겨보세요. 부산 갈매기의 함성 소리만큼 든든한 날개를 달아줄 수 있습니다.
+                        </p>
+                    </div>
+
+                    <!-- Fan Wall Box -->
+                    <div class="bg-slate-900 border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col h-[400px] shadow-xl">
+                        <!-- Messages Container -->
+                        <div class="flex-grow overflow-y-auto mb-6 pr-2 space-y-4" id="fan-messages">
+                            <!-- Pre-filled Default Messages -->
+                            <div class="bg-white/5 border border-white/5 p-4 rounded-xl">
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <span class="text-xs font-bold text-giantsGold">사직갈매기99</span>
+                                    <span class="text-[10px] text-slate-500">2026.07.10</span>
+                                </div>
+                                <p class="text-sm text-slate-300">올해는 반드시 가을야구 갑니다! 사직구장에서 소리쳐 응원할게요 화이팅!!</p>
+                            </div>
+                            <div class="bg-white/5 border border-white/5 p-4 rounded-xl">
+                                <div class="flex justify-between items-center mb-1.5">
+                                    <span class="text-xs font-bold text-giantsRed">최강자이언츠7</span>
+                                    <span class="text-[10px] text-slate-500">2026.07.10</span>
+                                </div>
+                                <p class="text-sm text-slate-300">마! 함 해보입시다! 최동원 영웅의 투지를 기억하며 매 경기 혼신의 응원을 보냅니다.</p>
+                            </div>
+                        </div>
+
+                        <!-- Add Message Form -->
+                        <form id="fan-form" class="space-y-3" onsubmit="addFanMessage(event)">
+                            <div class="grid grid-cols-3 gap-3">
+                                <input type="text" id="fan-name" placeholder="닉네임" required class="col-span-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-giantsRed text-white">
+                                <input type="text" id="fan-content" placeholder="응원 한마디를 입력하세요..." required class="col-span-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-giantsRed text-white">
+                            </div>
+                            <button type="submit" class="w-full bg-giantsRed hover:bg-white hover:text-giantsNavy text-white font-bold py-2.5 rounded-lg text-sm transition-all duration-300 shadow-md">
+                                <i class="fa-solid fa-paper-plane mr-1.5"></i> 함성 보내기
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-white/10 py-16 text-slate-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <div class="flex justify-center items-center gap-3">
+                <span class="text-2xl font-black text-white font-montserrat tracking-tighter">
+                    LOTTE <span class="text-giantsRed">GIANTS</span>
+                </span>
+            </div>
+            
+            <p class="max-w-xl mx-auto text-xs sm:text-sm text-slate-400">
+                본 웹사이트는 롯데 자이언츠 팬들을 위한 포트폴리오용 원페이지 반응형 소개 사이트입니다. 구단 및 캐릭터, 엠블럼의 상표 저작권은 롯데 자이언츠 구단 측에 있습니다.
+            </p>
+
+            <div class="flex justify-center gap-6 text-lg text-slate-400">
+                <a href="https://www.youtube.com/user/LotteGiants" target="_blank" class="hover:text-giantsRed transition-colors" aria-label="자이언츠 유투브"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/lottegiants_official/" target="_blank" class="hover:text-giantsRed transition-colors" aria-label="자이언츠 인스타그램"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.giantsclub.com" target="_blank" class="hover:text-giantsRed transition-colors" aria-label="공식 웹사이트"><i class="fa-solid fa-globe"></i></a>
+            </div>
+
+            <p class="text-[11px] text-slate-600">
+                &copy; 2026 LOTTE GIANTS FAN SITE. Developed with Pure HTML/CSS/JS.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. Mobile Menu Toggle ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu on navigation click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- 2. Header Style on Scroll ---
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-giantsNavy/95', 'shadow-lg', 'border-b-white/5');
+            } else {
+                header.classList.remove('bg-giantsNavy/95', 'shadow-lg', 'border-b-white/5');
+            }
+        });
+
+        // --- 3. Hero Particle Canvas Animation ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * -0.8 - 0.2; // Move upwards
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`; // Giants Gold color hint
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 40; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // --- 4. Star Players Interactive Filtering ---
+        function filterPlayers(type, btn) {
+            // Update active state on buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => {
+                b.classList.remove('bg-giantsRed', 'text-white', 'active');
+                b.classList.add('bg-white/5', 'text-slate-300');
+            });
+            btn.classList.remove('bg-white/5', 'text-slate-300');
+            btn.classList.add('bg-giantsRed', 'text-white', 'active');
+
+            // Filter logic
+            const cards = document.querySelectorAll('.player-card');
+            cards.forEach(card => {
+                if (type === 'all' || card.getAttribute('data-type') === type) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 5. Custom Audio Cheer Player Logic ---
+        const tracks = [
+            { title: "부산갈매기 클래식 합창", artist: "언제나 울려 퍼지는 오리지널 시그니처", duration: 120 },
+            { title: "돌아와요 부산항에 떼창", artist: "사직 야구 성지 25,000 관중의 대합창", duration: 150 },
+            { title: "승리의 롯데 자이언츠송", artist: "공식 마스코트 누리와 피니 댄스 타임", duration: 100 }
+        ];
+
+        let currentTrackIdx = 0;
+        let isPlaying = false;
+        let timer = null;
+        let progress = 0;
+
+        const trackTitle = document.getElementById('track-title');
+        const trackArtist = document.getElementById('track-artist');
+        const playBtn = document.getElementById('play-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const visualizerBars = document.querySelectorAll('#visualizer-container div');
+
+        function updateTrackDisplay() {
+            const track = tracks[currentTrackIdx];
+            trackTitle.innerText = track.title;
+            trackArtist.innerText = track.artist;
+            progress = 0;
+            progressBar.style.width = '0%';
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                isPlaying = false;
+                playBtn.innerHTML = '<i class="fa-solid fa-play ml-1"></i>';
+                clearInterval(timer);
+                resetVisualizer();
+            } else {
+                isPlaying = true;
+                playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                timer = setInterval(updateProgress, 200);
+            }
+        }
+
+        function updateProgress() {
+            progress += (100 / (tracks[currentTrackIdx].duration * 5)); // simulated duration increment
+            if (progress >= 100) {
+                progress = 0;
+                changeTrack('next');
+            }
+            progressBar.style.width = `${progress}%`;
+            animateVisualizer();
+        }
+
+        function animateVisualizer() {
+            visualizerBars.forEach(bar => {
+                const height = Math.floor(Math.random() * 56) + 10; // random height
+                bar.style.height = `${height}px`;
+            });
+        }
+
+        function resetVisualizer() {
+            visualizerBars.forEach((bar, idx) => {
+                const heights = [12, 24, 48, 32, 16, 56, 40, 20, 64, 24, 48, 12];
+                bar.style.height = `${heights[idx % heights.length]}px`;
+            });
+        }
+
+        function changeTrack(direction) {
+            if (direction === 'next') {
+                currentTrackIdx = (currentTrackIdx + 1) % tracks.length;
+            } else {
+                currentTrackIdx = (currentTrackIdx - 1 + tracks.length) % tracks.length;
+            }
+            updateTrackDisplay();
+            if (isPlaying) {
+                progress = 0;
+            } else {
+                togglePlay();
+            }
+        }
+
+        // Initialize visualizer heights initially
+        resetVisualizer();
+
+        // --- 6. Live Fan Wall Guestbook Logic ---
+        function loadMessages() {
+            const storageKey = 'giants_fan_wall_messages';
+            const saved = localStorage.getItem(storageKey);
+            const container = document.getElementById('fan-messages');
+            
+            if (saved) {
+                const messages = JSON.parse(saved);
+                container.innerHTML = '';
+                messages.forEach(msg => {
+                    appendMessageUI(msg.name, msg.content, msg.date);
+                });
+            }
+        }
+
+        function appendMessageUI(name, content, date) {
+            const container = document.getElementById('fan-messages');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'bg-white/5 border border-white/5 p-4 rounded-xl transform translate-y-2 opacity-0 transition-all duration-300';
+            
+            // Generate some decorative tags based on name length for visual flair
+            const tagColor = name.length % 2 === 0 ? 'text-giantsGold' : 'text-giantsRed';
+            
+            wrapper.innerHTML = `
+                <div class="flex justify-between items-center mb-1.5">
+                    <span class="text-xs font-bold ${tagColor}">${escapeHTML(name)}</span>
+                    <span class="text-[10px] text-slate-500">${date}</span>
+                </div>
+                <p class="text-sm text-slate-300">${escapeHTML(content)}</p>
+            `;
+            container.appendChild(wrapper);
+            
+            // Simple entry animation
+            setTimeout(() => {
+                wrapper.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            // Scroll container to bottom
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function addFanMessage(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('fan-name');
+            const contentInput = document.getElementById('fan-content');
+            const name = nameInput.value.trim();
+            const content = contentInput.value.trim();
+            
+            if (!name || !content) return;
+
+            const date = new Date();
+            const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+
+            // Add to UI
+            appendMessageUI(name, content, formattedDate);
+
+            // Save to Local Storage
+            const storageKey = 'giants_fan_wall_messages';
+            let messages = [];
+            const saved = localStorage.getItem(storageKey);
+            if (saved) {
+                messages = JSON.parse(saved);
+            }
+            
+            messages.push({ name, content, date: formattedDate });
+            localStorage.setItem(storageKey, JSON.stringify(messages));
+
+            // Reset Form Inputs
+            nameInput.value = '';
+            contentInput.value = '';
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        // Initialize guestbook messages on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadMessages();
+        });
+    </script>
+</body>
+</html>
